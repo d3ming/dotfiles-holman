@@ -1,3 +1,28 @@
+# Compiled Python files
+*.pyc
+
+# Folder view configuration files
 .DS_Store
+Desktop.ini
 *~
 *.swp
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# IDEA
+atlassian-ide-plugin.xml
+*.iml
+.idea/
+
+#VSCODE
+.vscode
+.classpath
+
+# Docker
+#docker-compose.override.yml

@@ -9,6 +9,24 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
+	ca = !git commit --amend
+	f = !git fetch
+	rh = !git reset --hard
+	s = status
+	cam = !git add --all && git commit --verbose
+	poh = !git push origin HEAD
+	pu = pull upstream master
+	ll = log --stat --abbrev-commit
+	l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset
+	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	rup = !git fetch upstream && git reset --hard upstream/master
+	rop = !git fetch origin && git reset --hard origin/master
+	rbo = !git fetch origin && git rebase -i origin/master
+	rb = !git fetch upstream && git rebase -i upstream/master
+	rbp = !git fetch upstream && git rebase -i upstream/production
+	conflicts = !git diff --name-only --diff-filter=U
+	db = !git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d
+	lo = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
         diff = auto
         status = auto
@@ -38,3 +56,6 @@
 
 [init]
 	defaultBranch = main
+[safe]
+	directory = /opt/homebrew/Library/Taps/homebrew/homebrew-core
+	directory = /opt/homebrew/Library/Taps/homebrew/homebrew-cask
