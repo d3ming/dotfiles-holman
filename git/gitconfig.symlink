@@ -15,15 +15,11 @@
 	s = status
 	cam = !git add --all && git commit --verbose
 	poh = !git push origin HEAD
-	pu = pull upstream master
 	ll = log --stat --abbrev-commit
 	l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset
 	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-	rup = !git fetch upstream && git reset --hard upstream/master
-	rop = !git fetch origin && git reset --hard origin/master
-	rbo = !git fetch origin && git rebase -i origin/master
-	rb = !git fetch upstream && git rebase -i upstream/master
-	rbp = !git fetch upstream && git rebase -i upstream/production
+	rop = !git fetch origin && git reset --hard origin/main
+	rbo = !git fetch origin && git rebase -i origin/main
 	conflicts = !git diff --name-only --diff-filter=U
 	db = !git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d
 	lo = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -51,6 +47,8 @@
         default = simple
 [credential]
 	helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [diff "spaceman-diff"]
   command = /opt/homebrew/bin/spaceman-diff
 
@@ -59,3 +57,12 @@
 [safe]
 	directory = /opt/homebrew/Library/Taps/homebrew/homebrew-core
 	directory = /opt/homebrew/Library/Taps/homebrew/homebrew-cask
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[credential "https://huggingface.co"]
+	provider = generic
