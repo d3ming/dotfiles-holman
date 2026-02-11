@@ -1,10 +1,13 @@
+# Source is in ~/.dotfiles/zsh/zshrc.symlink
+# SECECRETS AND ENV VARIABLES are in ./localrc!!!
+
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/projects
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -56,4 +59,42 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# SECECRETS AND ENV VARIABLES are in ./localrc!!!
+# Added by Windsurf
+export PATH="/Users/dongming/.codeium/windsurf/bin:$PATH"
+
+# Created by `pipx` on 2025-08-04 18:08:20
+export PATH="$PATH:/Users/dongming/.local/bin"
+
+# RUBY
+eval "$(rbenv init - zsh)"
+
+# Added by Antigravity
+export PATH="/Users/dongming/.antigravity/antigravity/bin:$PATH"
+
+# Python and Pip aliases
+alias python='python3'
+alias pip='pip3'
+
+# Completion setup (removed duplicate compinit)
+fpath+=~/.zfunc
+zstyle ':completion:*' menu select
+
+# Auto-activate venv when entering project directory
+autoload -U add-zsh-hook
+load-venv() {
+  # Only activate if not already in this venv
+  if [[ -f .venv/bin/activate ]] && [[ "$VIRTUAL_ENV" != "$(pwd)/.venv" ]]; then
+    source .venv/bin/activate
+  fi
+}
+add-zsh-hook chpwd load-venv
+load-venv  # Also run on shell startup
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# tmp thing for capfolio project
+export ALPHA_HUMAN=1
+eval "$(direnv hook zsh)"
+
+# opencode
+export PATH=/Users/dongming/.opencode/bin:$PATH

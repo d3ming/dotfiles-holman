@@ -3,5 +3,5 @@
 
 if (( $+commands[yarn] ))
 then
-  export PATH="$PATH:`yarn global bin`"
+  export PATH="$PATH:$(dirname $(which yarn))"
 fi

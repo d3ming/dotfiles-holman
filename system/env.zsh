@@ -1,1 +1,3 @@
-export EDITOR='code'
+export EDITOR='zed --wait'
+
+# Secrets are in ~/.localrc
